@@ -26,11 +26,10 @@ if 'DEBUG' in os.environ:
     ALLOWED_HOSTS = []
 else:
     DEBUG = False
-    SECRET_KEY = os.getenv('SECRET_KEY')
     ALLOWED_HOSTS = os.getenv('HOSTS').split(',') + ['127.0.0.1']
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 
 ALLOWED_HOSTS = []
 
@@ -131,7 +130,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication'
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_THROTTLE_RATES': {
         'pwreset': '5/day',
